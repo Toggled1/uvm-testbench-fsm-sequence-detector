@@ -2,7 +2,7 @@ class sd_monitor extends uvm_monitor;
 
     `uvm_component_utils(sd_monitor)
 
-    virtual interface sd_if.driver vif;
+    virtual interface sd_if.monitor vif;
     //analysis port
     uvm_analysis_port #(sd_transaction) ap;
 
@@ -12,7 +12,7 @@ class sd_monitor extends uvm_monitor;
 
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        if (!uvm_config_db #(virtual sd_if.driver)::get(this, "", "vif", vif))
+        if (!uvm_config_db #(virtual sd_if.monitor)::get(this, "", "vif", vif))
             `uvm_fatal("SD_MONITOR", "Monitor virtual interface is not configured")
         
         ap = new("ap", this);
@@ -24,7 +24,7 @@ class sd_monitor extends uvm_monitor;
 
         forever begin
             tr = new();
-            @(negedge vif.clk);
+            @(posedge vif.clk);
             tr.data_in = vif.data_in;
             tr.detected = vif.detected;
             tr.rst_n = vif.rst_n;

@@ -12,10 +12,15 @@ import uvm_pkg::*;
 bit clk;
 always #10 clk = ~clk;
 
-sd_if sd_if (clk);
+sd_if vif (clk);
+
+initial begin
+	uvm_config_db #(virtual sd_if.driver)::set(null, "uvm_test_top.*", "vif", vif.driver);
+	uvm_config_db #(virtual sd_if.monitor)::set(null, "uvm_test_top.*", "vif", vif.monitor);
+end
 
 //dut instantiation
-seq_detector dut(.bus(sd_if));
+seq_detector dut(.bus(vif));
 
 
 bind seq_detector sd_checker checker_inst (
