@@ -30,9 +30,9 @@ class sd_sequence extends uvm_sequence #(sd_transaction);
 
 
     virtual task post_body();
-        uvm_phase ending_phase = get_ending_phase();
-        if (ending_phase != null)
-            ending_phase.drop_objection(this);
+        uvm_phase starting_phase = get_starting_phase();
+        if (starting_phase != null)
+            starting_phase.drop_objection(this);
     endtask
 
 endclass
