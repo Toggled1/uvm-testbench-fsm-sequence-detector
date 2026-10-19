@@ -14,9 +14,23 @@ always #10 clk = ~clk;
 
 sd_if vif (clk);
 
+
+//startup sequence
+initial begin
+	vif.rst_n = 0;
+	#25;
+	vif.rst_n = 1;
+end
+
+
+
 initial begin
 	uvm_config_db #(virtual sd_if.driver)::set(null, "uvm_test_top.*", "vif", vif.driver);
 	uvm_config_db #(virtual sd_if.monitor)::set(null, "uvm_test_top.*", "vif", vif.monitor);
+
+
+    //run sd_test
+    run_test("sd_test");
 end
 
 //dut instantiation
