@@ -24,7 +24,9 @@ class sd_driver extends uvm_driver #(sd_transaction);
             seq_item_port.get_next_item(tr);
 
 
-            @(negedge vif.clk);
+            do begin
+                @(negedge vif.clk);
+            end while (vif.rst_n !== 1'b1);
             //Drive data_in
             vif.data_in <= tr.data_in;
 
