@@ -14,7 +14,7 @@ class sd_scoreboard extends uvm_scoreboard;
     endfunction
 
     virtual function void write(sd_transaction tr);
-        `uvm_info(get_type_name(), $sformatf("Received transaction: %0s", tr.convert2string()), UVM_MEDIUM)
+        `uvm_info(get_type_name(), $sformatf("Received transaction:\n%s", tr.sprint()), UVM_MEDIUM)
 
         //check if reset is asserted
         if (tr.rst_n === 1'b0) begin
