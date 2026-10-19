@@ -24,7 +24,7 @@ class sd_monitor extends uvm_monitor;
 
         forever begin
             tr = new();
-            @(posedge vif.clk);
+            @(posedge vif.clk or negedge vif.rst_n);
             tr.data_in = vif.data_in;
             tr.detected = vif.detected;
             tr.rst_n = vif.rst_n;

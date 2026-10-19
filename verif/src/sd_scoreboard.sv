@@ -20,8 +20,9 @@ class sd_scoreboard extends uvm_scoreboard;
         if (tr.rst_n === 1'b0) begin
             history = 4'b0000;
             detected_in_model = 0;
-
             `uvm_info(get_type_name(), "Reset asserted, clearing history and model detection", UVM_MEDIUM)
+            // The reset event may be observed before the DUT's reset update settles.
+            return;
         end
 
         else if (tr.rst_n === 1'b1) begin

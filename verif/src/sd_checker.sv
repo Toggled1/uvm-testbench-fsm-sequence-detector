@@ -60,6 +60,14 @@ module sd_checker (
 
     //--------special properties w/assertions----------//
 
+	always @(posedge clk or negedge rst_n) begin
+		if (rst_n === 1'b0) begin
+			a_async_reset: assert final (
+				(state === NO_MATCH) && (detected === 1'b0)
+			) else $error("Reset did not clear state and detected");
+		end
+	end
+
     //reset behaves correctly (never disable)
     a_reset_sampled: assert property (
     @(posedge clk) disable iff (1'b0)
