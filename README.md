@@ -13,7 +13,7 @@ The FSM states: `NO_MATCH`, `GOT_1`, `GOT_10`, and `GOT_101`.
 
 The UVM test sends 67 (nice) randomized input bits. The monitor samples at rising edges and also reports asynchronous reset assertion. The
 scoreboard independently checks detection using a four-bit history model that
-preserves overlaps and clears on reset. The history model uses is implemented as as a shift regsiter!
+preserves overlaps and clears on reset. The history model is implemented as as a shift regsiter!
 
 A bound checker observes internal DUT state without exposing it through the
 UVM monitor. SVA checks transitions, valid state/input values, detection, and
