@@ -19,6 +19,7 @@ class sd_test extends uvm_test;
         sd_sequence seq = sd_sequence::type_id::create("seq");
         //start sequence on the agent's sequencer!
         phase.raise_objection(this);
+        phase.phase_done.set_drain_time(this, 20ns);
         seq.start(m_env.m_agent.m_sequencer);
         phase.drop_objection(this);
     endtask
