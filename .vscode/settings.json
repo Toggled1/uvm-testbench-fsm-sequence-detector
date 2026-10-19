@@ -1,6 +1,12 @@
 {
+    "verilog.linting.linter": "none",
+    "verilog.linting.path": "/home/gawah/.local/verilator-uvm/bin",
     "verilog.linting.verilator.includePath": [
-        "/home/gawah/tools/uvm-verilator/src common design/src verif/src verif/tb"
+        "/home/gawah/tools/uvm-verilator/src",
+        "common",
+        "design/src",
+        "verif/src",
+        "verif/tb"
     ],
     "verilog.linting.verilator.arguments": "--timing --assert -Wno-fatal +define+UVM_NO_DPI"
 }
