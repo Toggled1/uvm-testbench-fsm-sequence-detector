@@ -4,7 +4,11 @@
 
 module tb_top;
 
+timeunit 1ns;
+timeprecision 1ps;
+
 import uvm_pkg::*;
+import sd_pkg::*;
 
 //import sd_pkg::*;
 `include "uvm_macros.svh"
